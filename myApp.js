@@ -3,8 +3,15 @@ let app = express();
 
 console.log("Hello World");
 
-app.get("/", function(req, res) {
-    res.sendFile("/views/index.html");
+app.get("/", (req, res) => {
+    res.sendfile(__dirname + "/views/index.html");
   });
 
+app.use("/public", express.static(__dirname + "/public"));
+
+app.get("/json", (req,res) => {
+  res.json({
+    "message": "Hello json"
+  });
+});
 module.exports = app;
